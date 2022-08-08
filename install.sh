@@ -1,3 +1,4 @@
+
 # Set to true if you do *NOT* want Magisk to mount
 # any files for you. Most modules would NOT want
 # to set this flag to true
@@ -7,7 +8,6 @@ POSTFSDATA=false
 LATESTARTSERVICE=true
 CLEANSERVICE=true
 DEBUG=false
-MODDIR=/data/adb/modules
 
 ##########################################################################################
 # Replace list
@@ -99,7 +99,7 @@ REPLACE="
 
 print_modname() {
 	ui_print "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
-ui_print "
+ ui_print "
 ┏━━━┳━━━━┳━━━┳━━━┓
 ┃┏━┓┃┏┓┏┓┃┏━┓┃┏━┓┃
 ┃┗━━╋┛┃┃┗┫┗━┛┃┗━┛┃
@@ -119,46 +119,123 @@ ui_print "
 ┃┃┃┗┫┗━━┓┗┓┏┛┃┏━┓┃┃╋┃┃┃┗━┛┃┗━━┳┛┗┛┃
 ┗┛┗━┻━━━┛╋┗┛╋┗┛╋┗┻┛╋┗━┻━━━┻━━━┻━━━┛"
   ui_print "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+  ui_print "Powered By Stratosphere"
   ui_print ""
+  sleep 1
+  ui_print "▌Module Includes Latest .."
+  sleep 1
   ui_print ""
+  ui_print "▌Youtube ReVanced Patches..."
+  sleep 1
   ui_print ""
-  }
+  ui_print "&"
+  sleep 1
+  ui_print ""
+  ui_print "▌Youtube Music ReVanced Patches.."
+  ui_print ""
+  sleep 2.5
+  ui_print ""
+   }
 
 # Copy/extract your module files into $MODPATH in on_install.
 
 on_install() {
+	  ui_print "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+DUMPYT=$(dumpsys package com.google.android.youtube)
+DUMPYTM=$(dumpsys package com.google.android.apps.youtube.music)
+YT_VER=17.29.34
+YTM_VER=5.16.54
+CURYT_VER=$(echo "$DUMPYT" | grep versionName | head -n1 | cut -d= -f2)
+CURYTM_VER=$(echo "$DUMPYTM" | grep versionName | head -n1 | cut -d= -f2)
+
+if [ -z "$YT_VER" ]; then abort "ERROR: com.google.android.youtube is not installed!";
+fi
+if [ -z "$YTM_VER" ]; then abort "ERROR: com.google.android.apps.youtube.music is not installed!";
+fi
+
+if [ "$YT_VER" != "$CURYT_VER" ]; then
+	ui_print "FAILED: com.google.android.youtube Version Mismatch!"
+	ui_print "▌Installed Version : ${CURYT_VER}"
+	ui_print "▌Module Version  : ${YT_VER}"
+	abort "▌WRONG VERSION!"
+fi
+if [ "$YTM_VER" != "$CURYTM_VER" ]; then
+	ui_print "FAILED: com.google.android.apps.youtube.music Version Mismatch!"
+	ui_print "▌Installed Version : ${CURYTM_VER}"
+	ui_print "▌Module Version  : ${YTM_VER}"
+	abort "▌WRONG VERSION!"
+fi
   # The following is the default implementation: extract $ZIPFILE/system to $MODPATH
   # Extend/change the logic to whatever you want
-  ui_print "▌ALL RE-VANCED APPLICATION CREDITS GO'S TO..."
+  ui_print ""
+  ui_print "▌Join https://t.me/AndroidRootModulesCommunity And Stay Updated!"
   sleep 1
   ui_print ""
-  ui_print "▌▰ 𝙍𝙚𝙑𝙖𝙣𝙘𝙚𝙙 𝙏𝙀𝘼𝙈 ▰ ▌"
+    ui_print "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+  ui_print ""
+  ui_print "▌Patching YT & YTM"
+  YT_PATH=$(echo "$DUMPYT" | grep path | cut -d: -f2 | xargs)
+  [ -z "$YT_PATH" ] && abort "FAILED: Base Path Not Found!"
+  YTM_PATH=$(echo "$DUMPYTM" | grep path | cut -d: -f2 | xargs)
+  [ -z "$YTM_PATH" ] && abort "FAILED: Base Path Not Found!"
+  sleep 2
+  ui_print "▌Done!"
+  ui_print ""
+    ui_print "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
   sleep 2
   ui_print ""
-  sleep 2
-  ui_print "▌I Have Just Build The App with Latest CLI..."
-  ui_print "▌& Made This Module For Our Community!"
-  ui_print ""
-  sleep 2
-    unzip -o "$ZIPFILE" 'tmp/*' -d $MODPATH >&2
-  ui_print "▌Installing MicroG.apk To Avoid Crashes And Login!"
-  ui_print ""
-  ui_print "▌Installing 𝙈𝙄𝘾𝙍𝙊-𝙂..."
-pm install $MODPATH/MicroG-ReCompiled-By-CV2.apk
-  ui_print ""
-ui_print "▌Installing 𝙎𝙏𝙍𝙋 𝙭 𝙍𝙚𝙑𝙖𝙣𝙘𝙚𝙙 𝙔𝙤𝙪𝙩𝙪𝙗𝙚 ..."
-pm install $MODPATH/STRPxReVanced-Youtube.apk
-ui_print " "
-ui_print "▌Installing 𝙎𝙏𝙍𝙋 𝙭 𝙍𝙚𝙑𝙖𝙣𝙘𝙚𝙙 𝙈𝙪𝙨𝙞𝙘 ..."
-pm install $MODPATH/STRPxReVanced-Music.apk
+  	ui_print "▌Un-mount.."
+  am force-stop com.google.android.youtube
+  am force-stop com.google.android.apps.youtube.music
+grep com.google.android.youtube /proc/mounts | while read -r line; do
+	echo "$line" | cut -d" " -f2 | xargs -r umount -l
+done
+grep com.google.android.apps.youtube.music /proc/mounts | while read -r line; do
+	echo "$line" | cut -d" " -f2 | xargs -r umount -l
+done
 ui_print ""
+sleep 2
+  ui_print "▌Done!"
+  ui_print ""
+    ui_print "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+  sleep 2
+ui_print ""
+  ui_print "▌Mounting YT & YTM"
+  chcon u:object_r:apk_data_file:s0 $MODPATH/YT/base.apk
+if ! op=$(mount -o bind $MODPATH/YT/base.apk $YT_PATH 2>&1); then 
+	ui_print "Mount Failed!"
+	abort "$op"
+fi
+chcon u:object_r:apk_data_file:s0 $MODPATH/YTM/base.apk
+if ! op=$(mount -o bind $MODPATH/YTM/base.apk $YTM_PATH 2>&1); then 
+	ui_print "Mount Failed!"
+	abort "$op"
+fi
+ui_print "▌Sucessfully Mounted YT & YTM"
+  ui_print ""
+    ui_print "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+  sleep 2
+ui_print ""
+  ui_print "▌I Have Just Build The App with Latest CLI & Patches ..."
+  ui_print "▌& Made This Module For Our Community!"
+  ui_print "▌Credits for Bad Ass Patches .. Goes to ReVanced Team"
+  ui_print ""
+    ui_print "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+  sleep 2
+  ui_print ""
   ui_print "▌ENJOY! ▌"
   rm -rf $TMPR
   sleep 2
-  ui_print "▌STRP x ReVanced ♥️"
   ui_print ""
+  ui_print "▌𝙎𝙏𝙍𝙋 ✗ 𝙍𝙚𝙑𝙖𝙣𝙘𝙚𝙙 ✗ 𝙍𝙤𝙤𝙩 𝙑𝙚𝙧𝙨𝙞𝙤𝙣 ♥️"
+  ui_print ""
+  sleep 1
   ui_print "▌Don't Forget To Reboot Device!"
-  sleep 3
+  sleep 1
+  ui_print "▌Module Made By @CRANKV2 (Telegram)"
+  ui_print ""
+    ui_print "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+  sleep 2
 }
 
 set_permissions() {

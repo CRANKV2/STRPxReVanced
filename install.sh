@@ -144,7 +144,7 @@ on_install() {
 DUMPYT=$(dumpsys package com.google.android.youtube)
 DUMPYTM=$(dumpsys package com.google.android.apps.youtube.music)
 YT_VER=17.29.34
-YTM_VER=5.16.54
+YTM_VER=5.17.51
 CURYT_VER=$(echo "$DUMPYT" | grep versionName | head -n1 | cut -d= -f2)
 CURYTM_VER=$(echo "$DUMPYTM" | grep versionName | head -n1 | cut -d= -f2)
 
@@ -193,7 +193,6 @@ done
 grep com.google.android.apps.youtube.music /proc/mounts | while read -r line; do
 	echo "$line" | cut -d" " -f2 | xargs -r umount -l
 done
-ui_print ""
 sleep 2
   ui_print "▌Done!"
   ui_print ""
@@ -211,6 +210,7 @@ if ! op=$(mount -o bind $MODPATH/YTM/base.apk $YTM_PATH 2>&1); then
 	ui_print "Mount Failed!"
 	abort "$op"
 fi
+sleep 2
 ui_print "▌Sucessfully Mounted YT & YTM"
   ui_print ""
     ui_print "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"

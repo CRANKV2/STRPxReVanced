@@ -59,7 +59,7 @@ Settings
 
 ### How To Use This Module?
 - Install This Versions Or Module Wont Work!
-> Youtube 17.29.34
+> Youtube 17.31.36
 > Youtube Music 5.17.51
 
 ### App Crashes?!

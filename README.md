@@ -1,5 +1,5 @@
 <p align="center"><a href="https://t.me/AndroidRootModulesCommunity"><img src="https://i.imgur.com/MtXcp7r.png" width="500"></a></p>  
- <h1 align="center"><b> 𝙎𝙏𝙍𝙋 ✗ 𝙍𝙚𝙑𝙖𝙣𝙘𝙚𝙙 ✗ 𝙔𝙏 ✗ 𝙔𝙏𝙈 ✗ 𝙍𝙤𝙤𝙩 𝙑𝙚𝙧𝙨𝙞𝙤𝙣 </b></h1> 
+ <h1 align="center"><b> 𝙎𝙏𝙍𝙋 ✗ 𝙍𝙚𝙑𝙖𝙣𝙘𝙚𝙙 ✗ 𝙔𝙏 ✗ 𝙉𝙊𝙉 𝙍𝙊𝙊𝙏 𝙑𝙚𝙧𝙨𝙞𝙤𝙣 </b></h1> 
  <h4 align="center">▌ReCompiled With Latest ReVanced Patches By CRANKV2 ▌</h4>
 
  <h1 align="center"><b><a href="https://t.me/AndroidRootModulesCommunity"><img src="https://img.shields.io/badge/Join-Telegram%20Channel-red.svg?logo=Telegram"></a></b></h1>
@@ -34,19 +34,6 @@
 Settings 
 - Custom Video Buffer 
 
-<h1 align="center"><b>Youtube Music Incl. PATCHES</b></h1>
-
-- Minimized Playback Music
-- TasteBuilder Remover
-- Hide Get Premium
-- Compact Header
-- Upgrade Button Remover
-- Background Play
-- Music Microg Support
-- Music Video Ads
-- Codecs Unlock
-- Exclusive Audio Playback
-
 <h1 align="center"><b> ▌MODULE ▌ ▌CREATOR ▌ ▌OWNER ▌ ▌GROUP ▌</b></h1>
 
 <h1 align="center"><b> By CRANKV2</b></h1>
@@ -60,7 +47,6 @@ Settings
 ### How To Use This Module?
 - Install This Versions Or Module Wont Work!
 > Youtube 17.31.36
-> Youtube Music 5.17.51
 
 ### App Crashes?!
 - This Is Not A Module Problem, Module is Tested on Many Devices And Users!
